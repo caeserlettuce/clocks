@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="utf-8">
+    <title>clocks</title>
+    <meta name="keywords" content="clocks the time">
+    <meta name="og:description" content="wow the clocks tell the time">
+    <meta property="og:image" content="./assets/chili.svg">
+    <meta property="og:title" content="clocks">
+    <meta name="twitter:description" content="wow the clocks tell the time">
+    <meta property="twitter:image" content="./assets/chili.svg">
+    <meta property="twitter:title" content="clocks">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/svg" href="./assets/chili.svg">
+  </head>
+  <body>
+    <header>
+      <h1>hi these are clocks</h1>
+    </header>
+    <main>
+
+      <div class="clocks">
+
+        <div class="clock">
+          <div class="time-wrapper">
+            <div id="playertime" class="playertime">
+              <p class="num-place hr" id="h1">
+                <span id="h1_1">0</span><br><span id="h1_2">0</span>
+              </p>
+              <p class="num-place hr" id="h2">
+                <span id="h2_1">0</span><br><span id="h2_2">0</span>
+              </p>
+              <p class="num-place hr" id="hr-colon">:</p>
+              <p class="num-place min" id="m1">
+                <span id="m1_1">0</span><br><span id="m1_2">0</span>
+              </p>
+              <p class="num-place min" id="m2">
+                <span id="m2_1">0</span><br><span id="m2_2">0</span>
+              </p>
+              <p class="num-place">:</p>
+              <p class="num-place sec" id="s1">
+                <span id="s1_1">0</span><br><span id="s1_2">0</span>
+              </p>
+              <p class="num-place sec" id="s2">
+                <span id="s2_1">0</span><br><span id="s2_2">0</span>
+              </p>
+              
+            </div>
+          </div>
+        </div>
+
+        <div class="clock">
+          <div class="time-wrapper">
+            <div id="ampmplayertime" class="ampmplayertime">
+              <p class="num-place hr" id="h1">
+                <span id="h1_1">0</span><br><span id="h1_2">0</span>
+              </p>
+              <p class="num-place hr" id="h2">
+                <span id="h2_1">0</span><br><span id="h2_2">0</span>
+              </p>
+              <p class="num-place hr" id="hr-colon">:</p>
+              <p class="num-place min" id="m1">
+                <span id="m1_1">0</span><br><span id="m1_2">0</span>
+              </p>
+              <p class="num-place min" id="m2">
+                <span id="m2_1">0</span><br><span id="m2_2">0</span>
+              </p>
+              <p class="num-place">:</p>
+              <p class="num-place sec" id="s1">
+                <span id="s1_1">0</span><br><span id="s1_2">0</span>
+              </p>
+              <p class="num-place sec" id="s2">
+                <span id="s2_1">0</span><br><span id="s2_2">0</span>
+              </p>
+              <p class="num-place" style="opacity: 0;">j</p>
+              <p class="num-place ampm" id="ampm">
+                <span id="ampm_1">AM</span><br><span id="ampm_2">AM</span>
+              </p>
+              
+            </div>
+          </div>
+        </div>
+
+        <div class="clock">
+          <div class="analog-clock">
+            <svg viewBox="0 0 20 20">
+              <circle cx="10" cy="10" r="10" fill="white"/>
+
+              <g class="second-hand hand" style="transform: translate(10px, 10px) rotate(0deg)">
+                <rect x="0" y="0" width="0.125" height="8.25" style="transform: translate(0.0125px) rotate(180deg)" fill="red" />
+              </g>
+              <g class="minute-hand hand" style="transform: translate(10px, 10px) rotate(0deg)">
+                <rect x="0" y="0" width="0.25" height="8.5" style="transform: translate(0.125px) rotate(180deg)" fill="black" />
+              </g>
+              <g class="hour-hand hand" style="transform: translate(10px, 10px) rotate(0deg)">
+                <rect x="0" y="0" width="0.45" height="5.5" style="transform: translate(0.225px) rotate(180deg)" fill="black" />
+              </g>
+
+              <g class="tick" style="transform: translate(10px, 10px) rotate(0deg)">
+                <rect x="0" y="0" width="0.25" height="1.25" style="transform: translate(0.125px, -10px) rotate(0deg)" fill="black" />
+              </g>
+
+              <g class="tick" style="transform: translate(10px, 10px) rotate(6deg)">
+                <rect x="0" y="0" width="0.15" height="0.75" style="transform: translate(0.075px, -10px) rotate(0deg)" fill="black" />
+              </g>
+              <g class="tick" style="transform: translate(10px, 10px) rotate(12deg)">
+                <rect x="0" y="0" width="0.15" height="0.75" style="transform: translate(0.075px, -10px) rotate(0deg)" fill="black" />
+              </g>
+              <g class="tick" style="transform: translate(10px, 10px) rotate(18deg)">
+                <rect x="0" y="0" width="0.15" height="0.75" style="transform: translate(0.075px, -10px) rotate(0deg)" fill="black" />
+              </g>
+              <g class="tick" style="transform: translate(10px, 10px) rotate(24deg)">
+                <rect x="0" y="0" width="0.15" height="0.75" style="transform: translate(0.075px, -10px) rotate(0deg)" fill="black" />
+              </g>
+
+              <g class="tick" style="transform: translate(10px, 10px) rotate(30deg)">
+                <rect x="0" y="0" width="0.25" height="1.25" style="transform: translate(0.125px, -10px) rotate(0deg)" fill="black" />
+              </g>
+
+              <g class="tick" style="transform: translate(10px, 10px) rotate(36deg)">
+                <rect x="0" y="0" width="0.15" height="0.75" style="transform: translate(0.075px, -10px) rotate(0deg)" fill="black" />
+              </g>
+              <g class="tick" style="transform: translate(10px, 10px) rotate(42deg)">
+                <rect x="0" y="0" width="0.15" height="0.75" style="transform: translate(0.075px, -10px) rotate(0deg)" fill="black" />
+              </g>
+              <g class="tick" style="transform: translate(10px, 10px) rotate(48deg)">
+                <rect x="0" y="0" width="0.15" height="0.75" style="transform: translate(0.075px, -10px) rotate(0deg)" fill="black" />
+              </g>
+              <g class="tick" style="transform: translate(10px, 10px) rotate(54deg)">
+                <rect x="0" y="0" width="0.15" height="0.75" style="transform: translate(0.075px, -10px) rotate(0deg)" fill="black" />
+              </g>
+
+              <g class="tick" style="transform: translate(10px, 10px) rotate(60deg)">
+                <rect x="0" y="0" width="0.25" height="1.25" style="transform: translate(0.125px, -10px) rotate(0deg)" fill="black" />
+              </g>
+
+              <g class="tick" style="transform: translate(10px, 10px) rotate(66deg)">
+                <rect x="0" y="0" width="0.15" height="0.75" style="transform: translate(0.075px, -10px) rotate(0deg)" fill="black" />
+              </g>
+              <g class="tick" style="transform: translate(10px, 10px) rotate(72deg)">
+                <rect x="0" y="0" width="0.15" height="0.75" style="transform: translate(0.075px, -10px) rotate(0deg)" fill="black" />
+              </g>
+              <g class="tick" style="transform: translate(10px, 10px) rotate(78deg)">
+                <rect x="0" y="0" width="0.15" height="0.75" style="transform: translate(0.075px, -10px) rotate(0deg)" fill="black" />
+              </g>
+              <g class="tick" style="transform: translate(10px, 10px) rotate(84deg)">
+                <rect x="0" y="0" width="0.15" height="0.75" style="transform: translate(0.075px, -10px) rotate(0deg)" fill="black" />
+              </g>
+              
+              <g class="tick" style="transform: translate(10px, 10px) rotate(90deg)">
+                <rect x="0" y="0" width="0.25" height="1.25" style="transform: translate(0.125px, -10px) rotate(0deg)" fill="black" />
+              </g>
+
+              <g class="tick" style="transform: translate(10px, 10px) rotate(96deg)">
+                <rect x="0" y="0" width="0.15" height="0.75" style="transform: translate(0.075px, -10px) rotate(0deg)" fill="black" />
+              </g>
+              <g class="tick" style="transform: translate(10px, 10px) rotate(102deg)">
+                <rect x="0" y="0" width="0.15" height="0.75" style="transform: translate(0.075px, -10px) rotate(0deg)" fill="black" />
+              </g>
+              <g class="tick" style="transform: translate(10px, 10px) rotate(108deg)">
+                <rect x="0" y="0" width="0.15" height="0.75" style="transform: translate(0.075px, -10px) rotate(0deg)" fill="black" />
+              </g>
+              <g class="tick" style="transform: translate(10px, 10px) rotate(114deg)">
+                <rect x="0" y="0" width="0.15" height="0.75" style="transform: translate(0.075px, -10px) rotate(0deg)" fill="black" />
+              </g>
+
+              <g class="tick" style="transform: translate(10px, 10px) rotate(120deg)">
+                <rect x="0" y="0" width="0.25" height="1.25" style="transform: translate(0.125px, -10px) rotate(0deg)" fill="black" />
+              </g>
+
+              <g class="tick" style="transform: translate(10px, 10px) rotate(126deg)">
+                <rect x="0" y="0" width="0.15" height="0.75" style="transform: translate(0.075px, -10px) rotate(0deg)" fill="black" />
+              </g>
+              <g class="tick" style="transform: translate(10px, 10px) rotate(132deg)">
+                <rect x="0" y="0" width="0.15" height="0.75" style="transform: translate(0.075px, -10px) rotate(0deg)" fill="black" />
+              </g>
+              <g class="tick" style="transform: translate(10px, 10px) rotate(138deg)">
+                <rect x="0" y="0" width="0.15" height="0.75" style="transform: translate(0.075px, -10px) rotate(0deg)" fill="black" />
+              </g>
+              <g class="tick" style="transform: translate(10px, 10px) rotate(144deg)">
+                <rect x="0" y="0" width="0.15" height="0.75" style="transform: translate(0.075px, -10px) rotate(0deg)" fill="black" />
+              </g>
+
+              <g class="tick" style="transform: translate(10px, 10px) rotate(150deg)">
+                <rect x="0" y="0" width="0.25" height="1.25" style="transform: translate(0.125px, -10px) rotate(0deg)" fill="black" />
+              </g>
+
+              <g class="tick" style="transform: translate(10px, 10px) rotate(156deg)">
+                <rect x="0" y="0" width="0.15" height="0.75" style="transform: translate(0.075px, -10px) rotate(0deg)" fill="black" />
+              </g>
+              <g class="tick" style="transform: translate(10px, 10px) rotate(162deg)">
+                <rect x="0" y="0" width="0.15" height="0.75" style="transform: translate(0.075px, -10px) rotate(0deg)" fill="black" />
+              </g>
+              <g class="tick" style="transform: translate(10px, 10px) rotate(168deg)">
+                <rect x="0" y="0" width="0.15" height="0.75" style="transform: translate(0.075px, -10px) rotate(0deg)" fill="black" />
+              </g>
+              <g class="tick" style="transform: translate(10px, 10px) rotate(174deg)">
+                <rect x="0" y="0" width="0.15" height="0.75" style="transform: translate(0.075px, -10px) rotate(0deg)" fill="black" />
+              </g>
+
+              <g class="tick" style="transform: translate(10px, 10px) rotate(180deg)">
+                <rect x="0" y="0" width="0.25" height="1.25" style="transform: translate(0.125px, -10px) rotate(0deg)" fill="black" />
+              </g>
+
+              <g class="tick" style="transform: translate(10px, 10px) rotate(186deg)">
+                <rect x="0" y="0" width="0.15" height="0.75" style="transform: translate(0.075px, -10px) rotate(0deg)" fill="black" />
+              </g>
+              <g class="tick" style="transform: translate(10px, 10px) rotate(192deg)">
+                <rect x="0" y="0" width="0.15" height="0.75" style="transform: translate(0.075px, -10px) rotate(0deg)" fill="black" />
+              </g>
+              <g class="tick" style="transform: translate(10px, 10px) rotate(198deg)">
+                <rect x="0" y="0" width="0.15" height="0.75" style="transform: translate(0.075px, -10px) rotate(0deg)" fill="black" />
+              </g>
+              <g class="tick" style="transform: translate(10px, 10px) rotate(204deg)">
+                <rect x="0" y="0" width="0.15" height="0.75" style="transform: translate(0.075px, -10px) rotate(0deg)" fill="black" />
+              </g>
+
+              <g class="tick" style="transform: translate(10px, 10px) rotate(210deg)">
+                <rect x="0" y="0" width="0.25" height="1.25" style="transform: translate(0.125px, -10px) rotate(0deg)" fill="black" />
+              </g>
+
+              <g class="tick" style="transform: translate(10px, 10px) rotate(216deg)">
+                <rect x="0" y="0" width="0.15" height="0.75" style="transform: translate(0.075px, -10px) rotate(0deg)" fill="black" />
+              </g>
+              <g class="tick" style="transform: translate(10px, 10px) rotate(222deg)">
+                <rect x="0" y="0" width="0.15" height="0.75" style="transform: translate(0.075px, -10px) rotate(0deg)" fill="black" />
+              </g>
+              <g class="tick" style="transform: translate(10px, 10px) rotate(228deg)">
+                <rect x="0" y="0" width="0.15" height="0.75" style="transform: translate(0.075px, -10px) rotate(0deg)" fill="black" />
+              </g>
+              <g class="tick" style="transform: translate(10px, 10px) rotate(234deg)">
+                <rect x="0" y="0" width="0.15" height="0.75" style="transform: translate(0.075px, -10px) rotate(0deg)" fill="black" />
+              </g>
+
+              <g class="tick" style="transform: translate(10px, 10px) rotate(240deg)">
+                <rect x="0" y="0" width="0.25" height="1.25" style="transform: translate(0.125px, -10px) rotate(0deg)" fill="black" />
+              </g>
+
+              <g class="tick" style="transform: translate(10px, 10px) rotate(246deg)">
+                <rect x="0" y="0" width="0.15" height="0.75" style="transform: translate(0.075px, -10px) rotate(0deg)" fill="black" />
+              </g>
+              <g class="tick" style="transform: translate(10px, 10px) rotate(252deg)">
+                <rect x="0" y="0" width="0.15" height="0.75" style="transform: translate(0.075px, -10px) rotate(0deg)" fill="black" />
+              </g>
+              <g class="tick" style="transform: translate(10px, 10px) rotate(258deg)">
+                <rect x="0" y="0" width="0.15" height="0.75" style="transform: translate(0.075px, -10px) rotate(0deg)" fill="black" />
+              </g>
+              <g class="tick" style="transform: translate(10px, 10px) rotate(264deg)">
+                <rect x="0" y="0" width="0.15" height="0.75" style="transform: translate(0.075px, -10px) rotate(0deg)" fill="black" />
+              </g>
+
+              <g class="tick" style="transform: translate(10px, 10px) rotate(270deg)">
+                <rect x="0" y="0" width="0.25" height="1.25" style="transform: translate(0.125px, -10px) rotate(0deg)" fill="black" />
+              </g>
+
+              <g class="tick" style="transform: translate(10px, 10px) rotate(276deg)">
+                <rect x="0" y="0" width="0.15" height="0.75" style="transform: translate(0.075px, -10px) rotate(0deg)" fill="black" />
+              </g>
+              <g class="tick" style="transform: translate(10px, 10px) rotate(282deg)">
+                <rect x="0" y="0" width="0.15" height="0.75" style="transform: translate(0.075px, -10px) rotate(0deg)" fill="black" />
+              </g>
+              <g class="tick" style="transform: translate(10px, 10px) rotate(288deg)">
+                <rect x="0" y="0" width="0.15" height="0.75" style="transform: translate(0.075px, -10px) rotate(0deg)" fill="black" />
+              </g>
+              <g class="tick" style="transform: translate(10px, 10px) rotate(294deg)">
+                <rect x="0" y="0" width="0.15" height="0.75" style="transform: translate(0.075px, -10px) rotate(0deg)" fill="black" />
+              </g>
+
+              <g class="tick" style="transform: translate(10px, 10px) rotate(300deg)">
+                <rect x="0" y="0" width="0.25" height="1.25" style="transform: translate(0.125px, -10px) rotate(0deg)" fill="black" />
+              </g>
+
+              <g class="tick" style="transform: translate(10px, 10px) rotate(306deg)">
+                <rect x="0" y="0" width="0.15" height="0.75" style="transform: translate(0.075px, -10px) rotate(0deg)" fill="black" />
+              </g>
+              <g class="tick" style="transform: translate(10px, 10px) rotate(312deg)">
+                <rect x="0" y="0" width="0.15" height="0.75" style="transform: translate(0.075px, -10px) rotate(0deg)" fill="black" />
+              </g>
+              <g class="tick" style="transform: translate(10px, 10px) rotate(318deg)">
+                <rect x="0" y="0" width="0.15" height="0.75" style="transform: translate(0.075px, -10px) rotate(0deg)" fill="black" />
+              </g>
+              <g class="tick" style="transform: translate(10px, 10px) rotate(324deg)">
+                <rect x="0" y="0" width="0.15" height="0.75" style="transform: translate(0.075px, -10px) rotate(0deg)" fill="black" />
+              </g>
+
+              <g class="tick" style="transform: translate(10px, 10px) rotate(330deg)">
+                <rect x="0" y="0" width="0.25" height="1.25" style="transform: translate(0.125px, -10px) rotate(0deg)" fill="black" />
+              </g>
+
+
+              <g class="tick" style="transform: translate(10px, 10px) rotate(336deg)">
+                <rect x="0" y="0" width="0.15" height="0.75" style="transform: translate(0.075px, -10px) rotate(0deg)" fill="black" />
+              </g>
+              <g class="tick" style="transform: translate(10px, 10px) rotate(342deg)">
+                <rect x="0" y="0" width="0.15" height="0.75" style="transform: translate(0.075px, -10px) rotate(0deg)" fill="black" />
+              </g>
+              <g class="tick" style="transform: translate(10px, 10px) rotate(348deg)">
+                <rect x="0" y="0" width="0.15" height="0.75" style="transform: translate(0.075px, -10px) rotate(0deg)" fill="black" />
+              </g>
+              <g class="tick" style="transform: translate(10px, 10px) rotate(354deg)">
+                <rect x="0" y="0" width="0.15" height="0.75" style="transform: translate(0.075px, -10px) rotate(0deg)" fill="black" />
+              </g>
+            </svg>
+          </div>
+        </div>
+
+
+      </div>
+
+
+    </main>
+
+    <script src="./main.js"></script>
+
+    <footer>
+      <img src="./assets/notepad.png">
+      <img src="./assets/technoblade.png">
+      <h2>©2024 <a href="https://dapug.lol">dapug.lol</a></h2>
+    </footer>
+  </body>
+</html>
