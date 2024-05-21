@@ -168,6 +168,7 @@ function fancy_ampm_time(seconds) {
 
 function analog_hand(val, max, elm) {
   var angle = (360 / max) * val;
+  // console.log("angle", elm, angle);
   document.querySelector(`.analog-clock .${elm}-hand`).style = `transform: translate(10px, 10px) rotate(${angle}deg)`;
 }
 
@@ -175,7 +176,11 @@ function fancy_analog_clock(seconds) {
   var floor_seconds = Math.floor(seconds);
   var the_hours = Math.floor(floor_seconds / 3600);
   var the_minutes = Math.floor((floor_seconds - (the_hours * 3600)) / 60);
-  var the_seconds = floor_seconds - (the_hours * 3600) - (the_hours * 60);
+  var the_seconds = floor_seconds - (the_hours * 3600) - (the_minutes * 60);
+
+  // console.log("hours", the_hours)
+  // console.log("minutes", the_minutes)
+  // console.log("seconds", the_seconds)
 
   if (the_hours > 12) {
     the_hours += -12;
@@ -188,8 +193,29 @@ function fancy_analog_clock(seconds) {
     the_hours = 12;
   }
   analog_hand((the_hours * 60 * 60) + (the_minutes * 60) + the_seconds, 60 * 60 * 12, "hour");
-  analog_hand((the_minutes * 60) + the_seconds, 60 * 60, "minute");
+  analog_hand(( (the_minutes * 60) + the_seconds ), 3600, "minute");
   analog_hand(the_seconds, 60, "second");
+}
+
+
+function do_flippy_num(num1, num2, elm) {
+  //console.log(num1, num2)
+  if (num1 != num2 || num1 != document.querySelector(`.flippy-clock .${elm}t1`).innerHTML) {
+    document.querySelector(`.flippy-clock .${elm}`).style.transitionDuration = "500ms";
+    document.querySelector(`.flippy-clock .${elm} .t .h1 text`).innerHTML = `${num1}`;
+    document.querySelector(`.flippy-clock .${elm} .b .h1 text`).innerHTML = `${num1}`;
+    document.querySelector(`.flippy-clock .${elm} .t .h2 text`).innerHTML = `${num2}`;
+    document.querySelector(`.flippy-clock .${elm} .b .h2 text`).innerHTML = `${num2}`;
+    // document.querySelector(`.flippy-clock #${elm}`).style.marginTop = "-1.2em";
+    setTimeout(() => {
+      document.querySelector(`.flippy-clock .${elm}`).style.transitionDuration = "0ms";
+      // document.querySelector(`.flippy-clock #${elm}`).style.marginTop = "0px";
+      document.querySelector(`.flippy-clock .${elm} .t .h1 text`).innerHTML = `${num2}`;
+      document.querySelector(`.flippy-clock .${elm} .b .h1 text`).innerHTML = `${num2}`;
+      document.querySelector(`.flippy-clock .${elm} .t .h2 text`).innerHTML = `${num1}`;
+      document.querySelector(`.flippy-clock .${elm} .b .h2 text`).innerHTML = `${num1}`;
+    }, 500);
+  }
 }
 
 

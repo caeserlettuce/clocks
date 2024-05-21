@@ -62,6 +62,10 @@
   src: url(assets/Roboto-BlackItalic.ttf);
   font-family: roboto_black_italic;
 }
+@font-face {
+  src: url(assets/RobotoMono-ExtraLight.ttf);
+  font-family: roboto_mono_extra_light;
+}
   
   
 /* custom styles for default elements */
@@ -234,6 +238,17 @@ header h1 {
 .analog-clock .hand {
   transition-duration: 50ms;
 }
+
+.flippy-clock svg {
+  height: 6.25em;
+  user-select: none;
+}
+
+.flippy-half {
+  transform: rotate3d(1, 0, 0, 0deg);
+  transform-origin: 0px, 3.5px;
+}
+
 
 
 
