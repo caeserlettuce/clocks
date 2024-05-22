@@ -200,22 +200,71 @@ function fancy_analog_clock(seconds) {
 
 function do_flippy_num(num1, num2, elm) {
   //console.log(num1, num2)
-  if (num1 != num2 || num1 != document.querySelector(`.flippy-clock .${elm}t1`).innerHTML) {
-    document.querySelector(`.flippy-clock .${elm}`).style.transitionDuration = "500ms";
+  if (num1 != num2 || num1 != document.querySelector(`.flippy-clock .${elm} .b .h1 text`).innerHTML) {
+    document.querySelector(`.flippy-clock .${elm} .t .h2`).style.transitionDuration = "150ms";
+    document.querySelector(`.flippy-clock .${elm} .b .h2`).style.transitionDuration = "150ms";
+
     document.querySelector(`.flippy-clock .${elm} .t .h1 text`).innerHTML = `${num1}`;
-    document.querySelector(`.flippy-clock .${elm} .b .h1 text`).innerHTML = `${num1}`;
+    document.querySelector(`.flippy-clock .${elm} .b .h1 text`).innerHTML = `${num2}`;
     document.querySelector(`.flippy-clock .${elm} .t .h2 text`).innerHTML = `${num2}`;
-    document.querySelector(`.flippy-clock .${elm} .b .h2 text`).innerHTML = `${num2}`;
+    document.querySelector(`.flippy-clock .${elm} .b .h2 text`).innerHTML = `${num1}`;
+    
+    document.querySelector(`.flippy-clock .${elm} .t .h2`).style.transform = `rotate3d(1, 0, 0, 270deg)`
     // document.querySelector(`.flippy-clock #${elm}`).style.marginTop = "-1.2em";
+    setTimeout( () => {
+      document.querySelector(`.flippy-clock .${elm} .b .h2`).style.transform = `rotate3d(1, 0, 0, 0deg)`
+    }, 75);
+
     setTimeout(() => {
-      document.querySelector(`.flippy-clock .${elm}`).style.transitionDuration = "0ms";
+      document.querySelector(`.flippy-clock .${elm} .t .h2`).style.transitionDuration = "0ms";
+      document.querySelector(`.flippy-clock .${elm} .b .h2`).style.transitionDuration = "0ms";
       // document.querySelector(`.flippy-clock #${elm}`).style.marginTop = "0px";
       document.querySelector(`.flippy-clock .${elm} .t .h1 text`).innerHTML = `${num2}`;
-      document.querySelector(`.flippy-clock .${elm} .b .h1 text`).innerHTML = `${num2}`;
+      document.querySelector(`.flippy-clock .${elm} .b .h1 text`).innerHTML = `${num1}`;
       document.querySelector(`.flippy-clock .${elm} .t .h2 text`).innerHTML = `${num1}`;
-      document.querySelector(`.flippy-clock .${elm} .b .h2 text`).innerHTML = `${num1}`;
-    }, 500);
+      document.querySelector(`.flippy-clock .${elm} .b .h2 text`).innerHTML = `${num2}`;
+
+      document.querySelector(`.flippy-clock .${elm} .t .h2`).style.transform = `rotate3d(1, 0, 0, 0deg)`
+      document.querySelector(`.flippy-clock .${elm} .b .h2`).style.transform = `rotate3d(1, 0, 0, 90deg)`
+    }, 150);
   }
+}
+
+function flippy_time(seconds) {
+  // console.log(seconds)
+  var floor_seconds = Math.floor(seconds);
+  var hours_exist;
+  fto["flippy_hours"] = Math.floor(floor_seconds / 3600);
+  fto["flippy_minutes"] = Math.floor((floor_seconds - (fto["flippy_hours"] * 3600)) / 60);
+  fto["flippy_seconds"] = floor_seconds - (fto["flippy_hours"] * 3600) - (fto["flippy_minutes"] * 60);
+
+  // console.log(fto["hours"])
+  // console.log(fto["minutes"])
+  // console.log(fto["seconds"])
+
+  if (fto["hours"] > 0) {
+    hours_checked = true;
+    hours_exist = true;
+  }
+  if (hours_exist == true) {
+    var split_hours = doublefy(fto["flippy_hours"]).split("");
+    var split_prev_hours = doublefy(fto["prev_flippy_hours"]).split("");
+    do_flippy_num(split_hours[0], split_prev_hours[0], "f1");
+    do_flippy_num(split_hours[1], split_prev_hours[1], "f2");
+  }
+  
+  var split_minutes = doublefy(fto["flippy_minutes"]).split("");
+  var split_prev_minutes = doublefy(fto["prev_flippy_minutes"]).split("");
+  do_flippy_num(split_minutes[0], split_prev_minutes[0], "f3");
+  do_flippy_num(split_minutes[1], split_prev_minutes[1], "f4");
+  var split_seconds = doublefy(fto["flippy_seconds"]).split("");
+  var split_prev_seconds = doublefy(fto["prev_flippy_seconds"]).split("");
+  do_flippy_num(split_seconds[0], split_prev_seconds[0], "f5");
+  do_flippy_num(split_seconds[1], split_prev_seconds[1], "f6");
+
+  fto["prev_flippy_hours"] = fto["flippy_hours"];
+  fto["prev_flippy_minutes"] = fto["flippy_minutes"];
+  fto["prev_flippy_seconds"] = fto["flippy_seconds"];
 }
 
 
@@ -232,6 +281,7 @@ var time_loop = setInterval(() => {
     fancy_time(day_seconds);
     fancy_ampm_time(ampm_day_seconds);
     fancy_analog_clock(ampm_day_seconds);
+    flippy_time(day_seconds);
   }
 
 

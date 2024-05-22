@@ -240,13 +240,17 @@ header h1 {
 }
 
 .flippy-clock svg {
-  height: 6.25em;
+  height: 3em;
   user-select: none;
 }
 
 .flippy-half {
-  transform: rotate3d(1, 0, 0, 0deg);
-  transform-origin: 0px, 3.5px;
+  transform-origin: 0px 3.5px;
+  transition-timing-function: linear;
+}
+
+.t .flippy-half {
+  transition-timing-function: ease-in;
 }
 
 
