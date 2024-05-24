@@ -1,4 +1,5 @@
 var now = new Date();
+
 var fto = {
   "hours": 0,
   "minutes": 0,
@@ -16,6 +17,32 @@ var apfto = {
   "prev_minutes": 0,
   "prev_seconds": 0,
   "prev_ampm": "AM"
+}
+var flpo = {
+  "flippy_hours": 0,
+  "flippy_minutes": 0,
+  "flippy_seconds": 0,
+  "prev_flippy_hours": 0,
+  "prev_flippy_minutes": 0,
+  "prev_flippy_seconds": 0,
+}
+var apflpo = {
+  "flippy_ampm_hours": 0,
+  "flippy_ampm_minutes": 0,
+  "flippy_ampm_seconds": 0,
+  "flippy_ampm_ampm": "AM",
+  "prev_flippy_ampm_hours": 0,
+  "prev_flippy_ampm_minutes": 0,
+  "prev_flippy_ampm_seconds": 0,
+  "prev_flippy_ampm_ampm": "AM",
+}
+var cfto = {
+  "hours": 0,
+  "minutes": 0,
+  "seconds": 0,
+  "prev_hours": 0,
+  "prev_minutes": 0,
+  "prev_seconds": 0,
 }
 
 function doublefy(num) {
@@ -234,9 +261,158 @@ function flippy_time(seconds) {
   // console.log(seconds)
   var floor_seconds = Math.floor(seconds);
   var hours_exist;
-  fto["flippy_hours"] = Math.floor(floor_seconds / 3600);
-  fto["flippy_minutes"] = Math.floor((floor_seconds - (fto["flippy_hours"] * 3600)) / 60);
-  fto["flippy_seconds"] = floor_seconds - (fto["flippy_hours"] * 3600) - (fto["flippy_minutes"] * 60);
+  flpo["flippy_hours"] = Math.floor(floor_seconds / 3600);
+  flpo["flippy_minutes"] = Math.floor((floor_seconds - (flpo["flippy_hours"] * 3600)) / 60);
+  flpo["flippy_seconds"] = floor_seconds - (flpo["flippy_hours"] * 3600) - (flpo["flippy_minutes"] * 60);
+
+  // console.log(fto["hours"])
+  // console.log(fto["minutes"])
+  // console.log(fto["seconds"])
+
+  if (flpo["flippy_hours"] > 0) {
+    hours_checked = true;
+    hours_exist = true;
+  }
+  if (hours_exist == true) {
+    var split_hours = doublefy(flpo["flippy_hours"]).split("");
+    var split_prev_hours = doublefy(flpo["prev_flippy_hours"]).split("");
+    do_flippy_num(split_hours[0], split_prev_hours[0], "f1");
+    do_flippy_num(split_hours[1], split_prev_hours[1], "f2");
+  }
+  
+  var split_minutes = doublefy(flpo["flippy_minutes"]).split("");
+  var split_prev_minutes = doublefy(flpo["prev_flippy_minutes"]).split("");
+  do_flippy_num(split_minutes[0], split_prev_minutes[0], "f3");
+  do_flippy_num(split_minutes[1], split_prev_minutes[1], "f4");
+  var split_seconds = doublefy(flpo["flippy_seconds"]).split("");
+  var split_prev_seconds = doublefy(flpo["prev_flippy_seconds"]).split("");
+  do_flippy_num(split_seconds[0], split_prev_seconds[0], "f5");
+  do_flippy_num(split_seconds[1], split_prev_seconds[1], "f6");
+
+  flpo["prev_flippy_hours"] = flpo["flippy_hours"];
+  flpo["prev_flippy_minutes"] = flpo["flippy_minutes"];
+  flpo["prev_flippy_seconds"] = flpo["flippy_seconds"];
+}
+
+function do_flippy_ampm_num(num1, num2, elm) {
+  //console.log(num1, num2)
+  if (num1 != num2 || num1 != document.querySelector(`.flippy-clock-ampm .${elm} .b .h1 text`).innerHTML) {
+    document.querySelector(`.flippy-clock-ampm .${elm} .t .h2`).style.transitionDuration = "150ms";
+    document.querySelector(`.flippy-clock-ampm .${elm} .b .h2`).style.transitionDuration = "150ms";
+
+    document.querySelector(`.flippy-clock-ampm .${elm} .t .h1 text`).innerHTML = `${num1}`;
+    document.querySelector(`.flippy-clock-ampm .${elm} .b .h1 text`).innerHTML = `${num2}`;
+    document.querySelector(`.flippy-clock-ampm .${elm} .t .h2 text`).innerHTML = `${num2}`;
+    document.querySelector(`.flippy-clock-ampm .${elm} .b .h2 text`).innerHTML = `${num1}`;
+    
+    document.querySelector(`.flippy-clock-ampm .${elm} .t .h2`).style.transform = `rotate3d(1, 0, 0, 270deg)`
+    // document.querySelector(`.flippy-clock #${elm}`).style.marginTop = "-1.2em";
+    setTimeout( () => {
+      document.querySelector(`.flippy-clock-ampm .${elm} .b .h2`).style.transform = `rotate3d(1, 0, 0, 0deg)`
+    }, 75);
+
+    setTimeout(() => {
+      document.querySelector(`.flippy-clock-ampm .${elm} .t .h2`).style.transitionDuration = "0ms";
+      document.querySelector(`.flippy-clock-ampm .${elm} .b .h2`).style.transitionDuration = "0ms";
+      // document.querySelector(`.flippy-clock #${elm}`).style.marginTop = "0px";
+      document.querySelector(`.flippy-clock-ampm .${elm} .t .h1 text`).innerHTML = `${num2}`;
+      document.querySelector(`.flippy-clock-ampm .${elm} .b .h1 text`).innerHTML = `${num1}`;
+      document.querySelector(`.flippy-clock-ampm .${elm} .t .h2 text`).innerHTML = `${num1}`;
+      document.querySelector(`.flippy-clock-ampm .${elm} .b .h2 text`).innerHTML = `${num2}`;
+
+      document.querySelector(`.flippy-clock-ampm .${elm} .t .h2`).style.transform = `rotate3d(1, 0, 0, 0deg)`
+      document.querySelector(`.flippy-clock-ampm .${elm} .b .h2`).style.transform = `rotate3d(1, 0, 0, 90deg)`
+    }, 150);
+  }
+}
+
+function flippy_ampm_time(seconds) {
+  // console.log(seconds)
+  var floor_seconds = Math.floor(seconds);
+  var hours_exist;
+  var afternoon = false;
+  apflpo["flippy_ampm_hours"] = Math.floor(floor_seconds / 3600);
+  if (apflpo["flippy_ampm_hours"] >= 12) {
+    if (apflpo["flippy_ampm_hours"] > 12) {apflpo["flippy_ampm_hours"] += -12;
+    }
+    apflpo["flippy_ampm_ampm"] = "PM";
+  } else {
+    apflpo["flippy_ampm_ampm"] = "AM";
+  }
+  apflpo["flippy_ampm_minutes"] = Math.floor((floor_seconds - (apflpo["flippy_ampm_hours"] * 3600)) / 60);
+  apflpo["flippy_ampm_seconds"] = floor_seconds - (apflpo["flippy_ampm_hours"] * 3600) - (apflpo["flippy_ampm_minutes"] * 60);
+
+  // console.log(fto["hours"])
+  // console.log(fto["minutes"])
+  // console.log(fto["seconds"])
+
+  if (apflpo["flippy_ampm_hours"] > 0) {
+    hours_checked = true;
+    hours_exist = true;
+  }
+  if (hours_exist == true) {
+    var split_hours = doublefy(apflpo["flippy_ampm_hours"]).split("");
+    var split_prev_hours = doublefy(apflpo["prev_flippy_ampm_hours"]).split("");
+    do_flippy_ampm_num(split_hours[0], split_prev_hours[0], "f1");
+    do_flippy_ampm_num(split_hours[1], split_prev_hours[1], "f2");
+  }
+  
+  var split_minutes = doublefy(apflpo["flippy_ampm_minutes"]).split("");
+  var split_prev_minutes = doublefy(apflpo["prev_flippy_ampm_minutes"]).split("");
+  do_flippy_ampm_num(split_minutes[0], split_prev_minutes[0], "f3");
+  do_flippy_ampm_num(split_minutes[1], split_prev_minutes[1], "f4");
+  var split_seconds = doublefy(apflpo["flippy_ampm_seconds"]).split("");
+  var split_prev_seconds = doublefy(apflpo["prev_flippy_ampm_seconds"]).split("");
+  do_flippy_ampm_num(split_seconds[0], split_prev_seconds[0], "f5");
+  do_flippy_ampm_num(split_seconds[1], split_prev_seconds[1], "f6");
+  var split_ampm = apflpo["flippy_ampm_ampm"].split("");
+  var split_prev_ampm = apflpo["prev_flippy_ampm_ampm"].split("");
+  do_flippy_ampm_num(split_ampm[0], split_prev_ampm[0], "f7");
+  do_flippy_ampm_num(split_ampm[1], split_prev_ampm[1], "f8");
+
+  apflpo["prev_flippy_ampm_hours"] = apflpo["flippy_ampm_hours"];
+  apflpo["prev_flippy_ampm_minutes"] = apflpo["flippy_ampm_minutes"];
+  apflpo["prev_flippy_ampm_seconds"] = apflpo["flippy_ampm_seconds"];
+  apflpo["prev_flippy_ampm_ampm"] = apflpo["flippy_ampm_ampm"];
+}
+
+function do_num(num1, num2, elm) {
+  if (num1 != num2) {
+    document.querySelector(`.playertime #${elm}`).style.transitionDuration = "500ms";
+    document.querySelector(`.playertime #${elm}_1`).innerHTML = `${num1}`;
+    document.querySelector(`.playertime #${elm}_2`).innerHTML = `${num2}`;
+    document.querySelector(`.playertime #${elm}`).style.marginTop = "-1.2em";
+    setTimeout(() => {
+      document.querySelector(`.playertime #${elm}`).style.transitionDuration = "0ms";
+      document.querySelector(`.playertime #${elm}`).style.marginTop = "0px";
+      document.querySelector(`.playertime #${elm}_2`).innerHTML = `${num1}`;
+      document.querySelector(`.playertime #${elm}_1`).innerHTML = `${num2}`;
+    }, 500);
+  }
+}
+
+function do_continuous_num(num1, num2, elm) {
+  if (num1 != num2) {
+    document.querySelector(`.playertime #${elm}`).style.transitionDuration = "500ms";
+    document.querySelector(`.playertime #${elm}_1`).innerHTML = `${num1}`;
+    document.querySelector(`.playertime #${elm}_2`).innerHTML = `${num2}`;
+    document.querySelector(`.playertime #${elm}`).style.marginTop = "-1.2em";
+    setTimeout(() => {
+      document.querySelector(`.playertime #${elm}`).style.transitionDuration = "0ms";
+      document.querySelector(`.playertime #${elm}`).style.marginTop = "0px";
+      document.querySelector(`.playertime #${elm}_2`).innerHTML = `${num1}`;
+      document.querySelector(`.playertime #${elm}_1`).innerHTML = `${num2}`;
+    }, 500);
+  }
+}
+
+function fancy_continuous_time(seconds) {
+  // console.log(seconds)
+  var floor_seconds = Math.floor(seconds);
+  var hours_exist;
+  fto["hours"] = Math.floor(floor_seconds / 3600);
+  fto["minutes"] = Math.floor((floor_seconds - (fto["hours"] * 3600)) / 60);
+  fto["seconds"] = floor_seconds - (fto["hours"] * 3600) - (fto["minutes"] * 60);
 
   // console.log(fto["hours"])
   // console.log(fto["minutes"])
@@ -247,25 +423,27 @@ function flippy_time(seconds) {
     hours_exist = true;
   }
   if (hours_exist == true) {
-    var split_hours = doublefy(fto["flippy_hours"]).split("");
-    var split_prev_hours = doublefy(fto["prev_flippy_hours"]).split("");
-    do_flippy_num(split_hours[0], split_prev_hours[0], "f1");
-    do_flippy_num(split_hours[1], split_prev_hours[1], "f2");
+    var split_hours = doublefy(fto["hours"]).split("");
+    var split_prev_hours = doublefy(fto["prev_hours"]).split("");
+    do_num(split_prev_hours[0], split_hours[0], "h1");
+    do_num(split_prev_hours[1], split_hours[1], "h2");
   }
   
-  var split_minutes = doublefy(fto["flippy_minutes"]).split("");
-  var split_prev_minutes = doublefy(fto["prev_flippy_minutes"]).split("");
-  do_flippy_num(split_minutes[0], split_prev_minutes[0], "f3");
-  do_flippy_num(split_minutes[1], split_prev_minutes[1], "f4");
-  var split_seconds = doublefy(fto["flippy_seconds"]).split("");
-  var split_prev_seconds = doublefy(fto["prev_flippy_seconds"]).split("");
-  do_flippy_num(split_seconds[0], split_prev_seconds[0], "f5");
-  do_flippy_num(split_seconds[1], split_prev_seconds[1], "f6");
+  var split_minutes = doublefy(fto["minutes"]).split("");
+  var split_prev_minutes = doublefy(fto["prev_minutes"]).split("");
+  do_num(split_prev_minutes[0], split_minutes[0], "m1");
+  do_num(split_prev_minutes[1], split_minutes[1], "m2");
+  var split_seconds = doublefy(fto["seconds"]).split("");
+  var split_prev_seconds = doublefy(fto["prev_seconds"]).split("");
+  do_num(split_prev_seconds[0], split_seconds[0], "s1");
+  do_num(split_prev_seconds[1], split_seconds[1], "s2");
 
-  fto["prev_flippy_hours"] = fto["flippy_hours"];
-  fto["prev_flippy_minutes"] = fto["flippy_minutes"];
-  fto["prev_flippy_seconds"] = fto["flippy_seconds"];
+  fto["prev_hours"] = fto["hours"];
+  fto["prev_minutes"] = fto["minutes"];
+  fto["prev_seconds"] = fto["seconds"];
 }
+
+
 
 
 
@@ -282,6 +460,7 @@ var time_loop = setInterval(() => {
     fancy_ampm_time(ampm_day_seconds);
     fancy_analog_clock(ampm_day_seconds);
     flippy_time(day_seconds);
+    flippy_ampm_time(day_seconds);
   }
 
 

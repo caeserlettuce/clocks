@@ -193,7 +193,7 @@ header h1 {
   margin-bottom: -5px;
 }
 
-.playertime, .ampmplayertime {
+.playertime, .ampmplayertime, .continuous-playertime {
   font-size: 1.25em;
   display: flex;
   height: 1.25em;
@@ -202,7 +202,7 @@ header h1 {
   justify-content: center;
   min-width: max-content;
 }
-.playertime p, .ampmplayertime p {
+.playertime p, .ampmplayertime p, .continuous-playertime p {
   margin: 0px;
   user-select: none;
   text-shadow: #000000 0px 0px 5px;
@@ -239,7 +239,7 @@ header h1 {
   transition-duration: 50ms;
 }
 
-.flippy-clock svg {
+.flippy-clock svg, .flippy-clock-ampm svg {
   height: 3em;
   user-select: none;
 }
