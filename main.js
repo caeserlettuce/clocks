@@ -389,29 +389,59 @@ function flippy_ampm_time(seconds) {
 }
 
 function do_continuous_num(elm, time, place) {
-  console.log(elm);
+  // console.log(elm);
 
-  var angle = (-1.2 * 10) + (1.2 * ( cfto[`${time}_angle`][place]) );
+  console.log("PLACE", place)
+
+  var angle = 0
+
+  if (place == 0) {  // 0-5
+    angle = (-1.2 * 6) + (1.2 * parseFloat( cfto[`${time}_angle`][place]) );
+  } else if (place == 1) { // 0-9
+    angle = (-1.2 * 10) + (1.2 * parseFloat( cfto[`${time}_angle`][place]) );
+  }
   console.log("ANGLE!!", angle)
 
   document.querySelector(`.continuous-playertime #${elm}`).style.transitionDuration = `1000ms`;
   document.querySelector(`.continuous-playertime #${elm}`).style.marginTop = `${angle}em`;
 
-  if (parseInt(cfto[`${time}`].split("")[1]) == 0 && parseInt(cfto[`prev_${time}`].split("")[1] == 9)) {
-    setTimeout(() => {
-      document.querySelector(`.continuous-playertime #${elm}`).style.transitionDuration = "0ms";
-      document.querySelector(`.continuous-playertime #${elm}`).style.marginTop = `${(-1.2 * 10)}em`;
-    }, 1000)
-    
+  // console.log(cfto[`${time}`]);
+
+  console.log("now and prev", cfto[`${time}`], cfto[`prev_${time}`]);
+  // console.log(doublefy(`${cfto[`${time}`]}`).split("")[1], doublefy(`${cfto[`prev_${time}`]}`).split("")[1])
+
+  if (place == 0) {  // 0-5
+    if (doublefy(`${cfto[`${time}`]}`).split("")[1] == "0" && doublefy(`${cfto[`prev_${time}`]}`).split("")[1] == "9" && doublefy(`${cfto[`prev_${time}`]}`).split("")[0] == "5") {
+      // console.log("YEHA")
+      document.querySelector(`.continuous-playertime #${elm}`).style.transitionDuration = "800ms";
+      document.querySelector(`.continuous-playertime #${elm}`).style.marginTop = `0em`;
+      setTimeout(() => {
+        document.querySelector(`.continuous-playertime #${elm}`).style.transitionDuration = "0ms";
+
+        setTimeout(() => {
+          document.querySelector(`.continuous-playertime #${elm}`).style.marginTop = `${(-1.2 * 6)}em`;
+        }, 100)
+        
+      }, 850)
+    }
+  } else if (place == 1) { // 0-9
+
+    if (doublefy(`${cfto[`${time}`]}`).split("")[1] == "0" && doublefy(`${cfto[`prev_${time}`]}`).split("")[1] == "9") {
+      console.log("YEHA")
+      document.querySelector(`.continuous-playertime #${elm}`).style.transitionDuration = "800ms";
+      document.querySelector(`.continuous-playertime #${elm}`).style.marginTop = `0em`;
+      setTimeout(() => {
+        document.querySelector(`.continuous-playertime #${elm}`).style.transitionDuration = "0ms";
+
+        setTimeout(() => {
+          document.querySelector(`.continuous-playertime #${elm}`).style.marginTop = `${(-1.2 * 10)}em`;
+        }, 10)
+        
+      }, 900)
+    }
+
+
   }
-  
-  
-  // LOWER THE AMOUNT OF NUMBERS IN EACH NUMBER REEL TO 0-6 AND THEN 0
-
-  
-
-
-  
   
 }
 
@@ -441,13 +471,18 @@ function fancy_continuous_time(seconds) {
 
   // angles
   cfto["seconds_angle"][0] = parseInt(split_seconds[0]) + (parseInt(split_seconds[1]) / 10);
+  cfto["seconds_angle"][1] = parseInt(split_seconds[1]);
+  cfto["minutes_angle"][0] = parseInt(split_minutes[0]) + (parseInt(split_minutes[1]) / 10);
+  cfto["minutes_angle"][1] = parseInt(split_minutes[1]) + (cfto["seconds"] / 60);
+  cfto["hours_angle"][0] = parseInt(split_hours[0]) + (parseInt(split_hours[1]) / 10);
+  cfto["hours_angle"][1] = parseInt(split_hours[1]) + (cfto["minutes"] / 60) + (cfto["seconds"] / 3600);
   
   
   
-  // do_continuous_num("h1", "hours", 0);
-  // do_continuous_num("h2", "hours", 1);
-  // do_continuous_num("m1", "minutes", 0);
-  // do_continuous_num("m2", "minutes", 1);
+  do_continuous_num("h1", "hours", 0);
+  do_continuous_num("h2", "hours", 1);
+  do_continuous_num("m1", "minutes", 0);
+  do_continuous_num("m2", "minutes", 1);
   do_continuous_num("s1", "seconds", 0);
   do_continuous_num("s2", "seconds", 1);
 
@@ -458,7 +493,14 @@ function fancy_continuous_time(seconds) {
 
 
 
-
+function do_all_times(day_seconds) {
+  fancy_time(day_seconds);
+  fancy_ampm_time(day_seconds);
+  fancy_analog_clock(day_seconds);
+  flippy_time(day_seconds);
+  flippy_ampm_time(day_seconds);
+  fancy_continuous_time(day_seconds);
+}
 
 var time_loop_int = 0;
 
@@ -468,17 +510,12 @@ var time_loop = setInterval(() => {
 
   if (time_loop_int % 10 == 0) { // every second!!
     var day_seconds = now.getSeconds() + (now.getMinutes() * 60) + (now.getHours() * 60 * 60);
-    var ampm_day_seconds = day_seconds * 1;
-    fancy_time(day_seconds);
-    fancy_ampm_time(ampm_day_seconds);
-    fancy_analog_clock(ampm_day_seconds);
-    flippy_time(day_seconds);
-    flippy_ampm_time(day_seconds);
-    fancy_continuous_time(day_seconds);
+    do_all_times(day_seconds);
+
   }
 
 
   time_loop_int += 1;
 }, 100);
 
-clearInterval(time_loop)
+// clearInterval(time_loop)
