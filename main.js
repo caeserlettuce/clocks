@@ -270,7 +270,7 @@ function do_flippy_num(num1, num2, elm) {
 }
 
 function flippy_time(seconds) {
-  // console.log(seconds)
+  // console.log("LALA", seconds);
   var floor_seconds = Math.floor(seconds);
   var hours_exist;
   flpo["flippy_hours"] = Math.floor(floor_seconds / 3600);
@@ -339,11 +339,13 @@ function do_flippy_ampm_num(num1, num2, elm) {
 }
 
 function flippy_ampm_time(seconds) {
-  // console.log(seconds)
+  // console.log("WHY", seconds)
   var floor_seconds = Math.floor(seconds);
   var hours_exist;
   var afternoon = false;
+  
   apflpo["flippy_ampm_hours"] = Math.floor(floor_seconds / 3600);
+  var og_hours = apflpo["flippy_ampm_hours"] * 1
   if (apflpo["flippy_ampm_hours"] >= 12) {
     if (apflpo["flippy_ampm_hours"] > 12) {apflpo["flippy_ampm_hours"] += -12;
     }
@@ -351,8 +353,8 @@ function flippy_ampm_time(seconds) {
   } else {
     apflpo["flippy_ampm_ampm"] = "AM";
   }
-  apflpo["flippy_ampm_minutes"] = Math.floor((floor_seconds - (apflpo["flippy_ampm_hours"] * 3600)) / 60);
-  apflpo["flippy_ampm_seconds"] = floor_seconds - (apflpo["flippy_ampm_hours"] * 3600) - (apflpo["flippy_ampm_minutes"] * 60);
+  apflpo["flippy_ampm_minutes"] = Math.floor((floor_seconds - (og_hours * 3600)) / 60);
+  apflpo["flippy_ampm_seconds"] = floor_seconds - (og_hours * 3600) - (apflpo["flippy_ampm_minutes"] * 60);
 
   // console.log(fto["hours"])
   // console.log(fto["minutes"])
@@ -391,7 +393,7 @@ function flippy_ampm_time(seconds) {
 function do_continuous_num(elm, time, place) {
   // console.log(elm);
 
-  console.log("PLACE", place)
+  // console.log("PLACE", place)
 
   var angle = 0
 
@@ -400,14 +402,14 @@ function do_continuous_num(elm, time, place) {
   } else if (place == 1) { // 0-9
     angle = (-1.2 * 10) + (1.2 * parseFloat( cfto[`${time}_angle`][place]) );
   }
-  console.log("ANGLE!!", angle)
+  // console.log("ANGLE!!", angle)
 
   document.querySelector(`.continuous-playertime #${elm}`).style.transitionDuration = `1000ms`;
   document.querySelector(`.continuous-playertime #${elm}`).style.marginTop = `${angle}em`;
 
   // console.log(cfto[`${time}`]);
 
-  console.log("now and prev", cfto[`${time}`], cfto[`prev_${time}`]);
+  // console.log("now and prev", cfto[`${time}`], cfto[`prev_${time}`]);
   // console.log(doublefy(`${cfto[`${time}`]}`).split("")[1], doublefy(`${cfto[`prev_${time}`]}`).split("")[1])
 
   if (place == 0) {  // 0-5
@@ -419,7 +421,7 @@ function do_continuous_num(elm, time, place) {
         document.querySelector(`.continuous-playertime #${elm}`).style.transitionDuration = "0ms";
 
         setTimeout(() => {
-          document.querySelector(`.continuous-playertime #${elm}`).style.marginTop = `${(-1.2 * 6)}em`;
+          document.querySelector(`.continuous-playertime #${elm}`).style.marginTop = `${(-7.05)}em`;
         }, 100)
         
       }, 850)
@@ -428,20 +430,17 @@ function do_continuous_num(elm, time, place) {
 
     if (doublefy(`${cfto[`${time}`]}`).split("")[1] == "0" && doublefy(`${cfto[`prev_${time}`]}`).split("")[1] == "9") {
       console.log("YEHA")
-      document.querySelector(`.continuous-playertime #${elm}`).style.transitionDuration = "800ms";
+      document.querySelector(`.continuous-playertime #${elm}`).style.transitionDuration = "950ms";
       document.querySelector(`.continuous-playertime #${elm}`).style.marginTop = `0em`;
       setTimeout(() => {
         document.querySelector(`.continuous-playertime #${elm}`).style.transitionDuration = "0ms";
+        document.querySelector(`.continuous-playertime #${elm}`).style.marginTop = `${(-11.73)}em`;
 
-        setTimeout(() => {
-          document.querySelector(`.continuous-playertime #${elm}`).style.marginTop = `${(-1.2 * 10)}em`;
-        }, 10)
-        
-      }, 900)
+      }, 950)
     }
 
 
-  }
+  } // ADD THE HOURS THING!! HOURS ONLY GO UP TO 2 IN PLACE 1!!!
   
 }
 
@@ -453,9 +452,9 @@ function fancy_continuous_time(seconds) {
   cfto["minutes"] = Math.floor((floor_seconds - (cfto["hours"] * 3600)) / 60);
   cfto["seconds"] = floor_seconds - (cfto["hours"] * 3600) - (cfto["minutes"] * 60);
 
-   console.log(cfto["hours"])
-   console.log(cfto["minutes"])
-   console.log(cfto["seconds"])
+  //  console.log(cfto["hours"])
+  //  console.log(cfto["minutes"])
+  //  console.log(cfto["seconds"])
 
   if (cfto["hours"] > 0) {
     hours_checked = true;
